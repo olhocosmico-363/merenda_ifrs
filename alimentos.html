@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Alimentos - Merenda Escolar</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🍎
+            </div>
+
+            <div>
+                <strong>Merenda Escolar</strong>
+                <small>Campus Viamão</small>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="agendamento-lanche.html">
+                <span>▣</span>
+                Agendamento de Lanche
+            </a>
+
+            <a href="registro-entrega.html">
+
+                <span>🍴</span>
+                Registro de Entrega
+
+            </a>
+
+            <a href="#">
+                <span>👥</span>
+                Alunos
+            </a>
+
+            <a href="#">
+                <span>▰</span>
+                Turmas
+            </a>
+
+            <a href="alimentos.html"
+               class="active">
+
+                <span>▣</span>
+                Alimentos
+
+            </a>
+
+            <a href="produtos.html">
+                <span>◇</span>
+                Produtos
+            </a>
+
+            <a href="#">
+                <span>▥</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+
+        <div class="menu-bottom">
+
+            <a href="#">
+                <span>⚙</span>
+                Configurações
+            </a>
+
+            <a href="#">
+                <span>↪</span>
+                Sair
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Alimentos
+                </h1>
+
+                <p>
+                    Cadastre e gerencie os alimentos da merenda escolar.
+                </p>
+
+            </div>
+
+
+            <div class="usuario">
+
+                <div class="avatar">
+                    AD
+                </div>
+
+                <div>
+
+                    <strong>
+                        Administrador
+                    </strong>
+
+                    <small>
+                        Campus Viamão
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Lista de alimentos
+                    </h2>
+
+                    <p>
+                        Consulte, edite e cadastre os alimentos utilizados na merenda.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="abrirFormularioAlimento()">
+
+                    + Cadastrar Alimento
+
+                </button>
+
+            </div>
+
+
+            <!-- BUSCA -->
+
+            <div class="card">
+
+                <div class="campo">
+
+                    <label>
+                        Buscar
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscaAlimento"
+                        placeholder="Pesquisar alimento..."
+                        oninput="renderTabelaAlimentos()">
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <div
+                class="card formulario"
+                id="formularioAlimento"
+                style="display:none;">
+
+                <div class="form-title">
+
+                    <div>
+
+                        <h3 id="tituloFormularioAlimento">
+                            Cadastrar Alimento
+                        </h3>
+
+                        <p>
+                            Informe os dados do alimento.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="fechar"
+                        onclick="fecharFormularioAlimento()">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="campo">
+
+                        <label>
+                            Nome do Alimento *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="novoNomeAlimento"
+                            placeholder="Ex.: Suco de Uva">
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Natureza *
+                        </label>
+
+                        <select id="novaNaturezaAlimento">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Grupo Alimentar *
+                        </label>
+
+                        <select id="novoGrupoAlimento">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Unidade de Medida Base *
+                        </label>
+
+                        <select id="novaUnidadeAlimento">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                        </select>
+
+                        <small
+                            id="avisoUnidadeAlimento"
+                            style="display:none;">
+
+                            Unidade bloqueada: existem produtos vinculados a este alimento.
+
+                        </small>
+
+                    </div>
+
+
+                    <div class="campo campo-largo">
+
+                        <label>
+                            Descrição
+                        </label>
+
+                        <textarea
+                            id="novaDescricaoAlimento"
+                            placeholder="Ex.: Suco de uva integral sem adição de açúcares"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="fecharFormularioAlimento()">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="salvarAlimento()">
+
+                        Salvar Alimento
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABELA -->
+
+            <div class="card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>
+                            Alimentos cadastrados
+                        </h3>
+
+                        <p>
+                            A unidade base do alimento é usada pelos produtos vinculados.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Nome
+                                </th>
+
+                                <th>
+                                    Descrição
+                                </th>
+
+                                <th>
+                                    Natureza
+                                </th>
+
+                                <th>
+                                    Grupo
+                                </th>
+
+                                <th>
+                                    Unidade Base
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabelaAlimentos">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast">
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

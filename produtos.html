@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Produtos - Merenda Escolar</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🍎
+            </div>
+
+            <div>
+                <strong>Merenda Escolar</strong>
+                <small>Campus Viamão</small>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="agendamento-lanche.html">
+                <span>▣</span>
+                Agendamento de Lanche
+            </a>
+
+            <a href="registro-entrega.html">
+
+                <span>🍴</span>
+                Registro de Entrega
+
+            </a>
+
+            <a href="#">
+                <span>👥</span>
+                Alunos
+            </a>
+
+            <a href="#">
+                <span>▰</span>
+                Turmas
+            </a>
+
+            <a href="alimentos.html">
+                <span>▣</span>
+                Alimentos
+            </a>
+
+            <a href="produtos.html"
+               class="active">
+
+                <span>◇</span>
+                Produtos
+
+            </a>
+
+            <a href="#">
+                <span>▥</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+
+        <div class="menu-bottom">
+
+            <a href="#">
+                <span>⚙</span>
+                Configurações
+            </a>
+
+            <a href="#">
+                <span>↪</span>
+                Sair
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Produtos em Estoque
+                </h1>
+
+                <p>
+                    Cadastre os produtos e embalagens vinculados aos alimentos.
+                </p>
+
+            </div>
+
+
+            <div class="usuario">
+
+                <div class="avatar">
+                    AD
+                </div>
+
+                <div>
+
+                    <strong>
+                        Administrador
+                    </strong>
+
+                    <small>
+                        Campus Viamão
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Lista de produtos
+                    </h2>
+
+                    <p>
+                        Consulte, edite e cadastre os produtos e embalagens da merenda.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="abrirFormularioProduto()">
+
+                    + Cadastrar Produto
+
+                </button>
+
+            </div>
+
+
+            <!-- BUSCA -->
+
+            <div class="card">
+
+                <div class="campo">
+
+                    <label>
+                        Buscar
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscaProduto"
+                        placeholder="Pesquisar produto..."
+                        oninput="renderTabelaProdutos()">
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <div
+                class="card formulario"
+                id="formularioProduto"
+                style="display:none;">
+
+                <div class="form-title">
+
+                    <div>
+
+                        <h3 id="tituloFormularioProduto">
+                            Cadastrar Produto
+                        </h3>
+
+                        <p>
+                            Informe os dados do produto e da embalagem.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="fechar"
+                        onclick="fecharFormularioProduto()">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="campo campo-duplo">
+
+                        <label>
+                            Alimento Vinculado *
+                        </label>
+
+                        <select
+                            id="novoAlimentoProduto"
+                            onchange="atualizarUnidadeProduto()">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Quantidade Unitária Base *
+                        </label>
+
+                        <input
+                            type="number"
+                            id="novaQuantidadeBaseProduto"
+                            min="0"
+                            step="any"
+                            placeholder="Ex.: 0.4">
+
+                        <small id="dicaUnidadeProduto">
+
+                            Selecione o alimento para ver a unidade.
+
+                        </small>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>
+                            Quantidade de Subitens (Opcional)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="novosSubitensProduto"
+                            min="1"
+                            step="1"
+                            placeholder="Ex.: 40">
+
+                    </div>
+
+
+                    <div class="campo campo-largo">
+
+                        <label>
+                            Descrição do Produto / Embalagem *
+                        </label>
+
+                        <textarea
+                            id="novaDescricaoProduto"
+                            placeholder="Ex.: Pacote de 400g com aproximadamente 40 biscoitos"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="fecharFormularioProduto()">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="salvarProduto()">
+
+                        Salvar Produto
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABELA -->
+
+            <div class="card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>
+                            Produtos cadastrados
+                        </h3>
+
+                        <p>
+                            Cada produto está vinculado a um alimento e usa a unidade base dele.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table class="tabela-produtos">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Produto / Embalagem
+                                </th>
+
+                                <th>
+                                    Alimento Vinculado
+                                </th>
+
+                                <th>
+                                    Qtd. Base
+                                </th>
+
+                                <th>
+                                    Subitens
+                                </th>
+
+                                <th>
+                                    Estoque Provisionado
+                                </th>
+
+                                <th>
+                                    Estoque Disponível
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabelaProdutos">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast">
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
